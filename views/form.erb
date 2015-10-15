@@ -12,19 +12,19 @@
 <form name="myform" method="get">
   <p>
   <label>Full Name<br/>
-    <input name="user" type="text" value="<%= params.fetch ("user") %>">
+    <input name="user" type="text" value="<%= params.fetch("user","")%>">
   </label>
   </p>
 
   <p>
   <label>Address<br/>
-    <textarea name="address"> <%= params.fetch ("address") %> </textarea>
+    <textarea name="address"> <%= params.fetch("address","") %></textarea>
   </label>
   </p>
 
   <p>
   <label>City<br/>
-    <input name="city" type="text" value="<%= params.fetch ("city") %>">
+    <input name="city" type="text" value="<%= params.fetch("city", "") %>">
   </label>
   </p>
  
@@ -34,7 +34,7 @@
 
  <% @states.each do | state | %>
     
-  <option value="<%= state[:id]  %>" selected><%= state[:name] %></option>
+  <option value="<%= state[:id]  %>" <% if params["states"]== state[:id] %>selected<% end %>><%= state[:name] %></option>
   
  <% end %>
  </select>	
@@ -42,7 +42,7 @@
 
   <p>
   <label>Zip<br/>
-    <input name="zipcode" type="text" value="<%= params.fetch ("zipcode") %>">
+    <input name="zipcode" type="text" value="<%= params.fetch("zipcode","") %>">
   </label>
   </p>
 
