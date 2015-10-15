@@ -7,7 +7,11 @@ get '/' do
   erb :index, layout: :main
 end
 
-@states=[]
+
+
+
+get '/form' do
+  @states=[]
 
   state={}
   state={id:'IN', name:'Indiana'}
@@ -31,10 +35,6 @@ end
 
   @states.sort_by! {| state | state[:name]}
 
-
-
-get '/form' do
-  # code!
   erb :form, layout: :main
 end
 

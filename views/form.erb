@@ -4,35 +4,37 @@
 
 <!-- iterate through each state in the array and put them into list items individually -->
 
-<%if submit=true? %>
-<p> "Form has been submitted" </p>
-
+<% if params.has_key? "action" %>
+<p>Form has been submitted</p>
 <% end %>
+
 
 <form name="myform" method="get">
   <p>
   <label>Full Name<br/>
-    <input name="user" type="text">
+    <input name="user" type="text" value="<%= params.fetch ("user") %>">
   </label>
   </p>
 
   <p>
   <label>Address<br/>
-    <textarea name="address"></textarea>
+    <textarea name="address"> <%= params.fetch ("address") %> </textarea>
   </label>
   </p>
 
   <p>
   <label>City<br/>
-    <input name="city" type="text">
+    <input name="city" type="text" value="<%= params.fetch ("city") %>">
   </label>
   </p>
+ 
 
+ 
  <select name="states">
 
  <% @states.each do | state | %>
     
-  <option value=<%= state[:id]  %>><%= state[:name] %></option>
+  <option value="<%= state[:id]  %>" selected><%= state[:name] %></option>
   
  <% end %>
  </select>	
@@ -40,15 +42,26 @@
 
   <p>
   <label>Zip<br/>
-    <input name="zipcode" type="text">
+    <input name="zipcode" type="text" value="<%= params.fetch ("zipcode") %>">
   </label>
   </p>
 
+
+
+<% if params.has_value? "on" %>
   <p>
-  <label>
-    <input name="agreement" type="checkbox"> I agree...
-  </label>
+    <label>
+      <input name="agreement" type="checkbox" checked> I agree...
+    </label>
   </p>
+<% else %>
+  <p>
+    <label>
+      <input name="agreement" type="checkbox"> I agree...
+    </label>
+  </p>
+<% end %> 
+ 
 
  <p>
   <input type="submit" name="action" value="Submit Form">
