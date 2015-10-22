@@ -18,6 +18,12 @@
 
   <p>
   <label>Address<br/>
+    <!-- you'll want to watch the extra spaces in textarea tags -->
+
+    <!--  jarp: you can just reference the key directly.
+          <%= params[:key_name_here] %> If it is missing it will be nil and just not appear
+          which is what you want. not causing any errors
+    -->
     <textarea name="address"> <%= params.fetch("address","") %></textarea>
   </label>
   </p>
@@ -27,17 +33,17 @@
     <input name="city" type="text" value="<%= params.fetch("city", "") %>">
   </label>
   </p>
- 
 
- 
+
+
  <select name="states">
 
  <% @states.each do | state | %>
-    
+
   <option value="<%= state[:id]  %>" <% if params["states"]== state[:id] %>selected<% end %>><%= state[:name] %></option>
-  
+
  <% end %>
- </select>	
+ </select>
 
 
   <p>
@@ -47,6 +53,9 @@
   </p>
 
 
+<!-- jarp: it's better to just wrap the 'checked' in conditionals.
+           what you are doing here is a lot of repeating
+-->
 
 <% if params.has_value? "on" %>
   <p>
@@ -60,14 +69,14 @@
       <input name="agreement" type="checkbox"> I agree...
     </label>
   </p>
-<% end %> 
- 
+<% end %>
+
 
  <p>
   <input type="submit" name="action" value="Submit Form">
  </p>
 
- 
+
 </form>
 
 
